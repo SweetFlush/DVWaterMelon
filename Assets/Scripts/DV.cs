@@ -52,7 +52,7 @@ public class DV : MonoBehaviour
                 mousePos.x = RightBorder;
             }
 
-            transform.position = Vector3.Lerp(transform.position, new Vector3(mousePos.x, 8, 0), 0.5f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(mousePos.x, 7.8f, 0), 0.5f);
         }
 
     }
@@ -129,7 +129,7 @@ public class DV : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         level++;
         gameManager.maxLevel = Mathf.Max(gameManager.maxLevel, level);
-
+        gameManager.CheckTheScore();
         //rigid.mass = level + 1;
         isMerge = false;
     }
@@ -192,6 +192,8 @@ public class DV : MonoBehaviour
     {
         effect.transform.position = transform.position;
         effect.transform.localScale = transform.localScale * 10;
+        if (effect.transform.localScale.x < 1)
+            effect.transform.localScale = new Vector3(1, 1, 1);
         effect.Play();
     }
 
